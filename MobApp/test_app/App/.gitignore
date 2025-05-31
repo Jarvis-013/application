@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# FastAPI debug / logs
+*.log
+*.sqlite3
+*.db
+instance/
+*.pid
+
+# Pytest
+.cache
+.pytest_cache/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+*.swp
+*.swo
+
+# Local environment/config secrets
+.env
+.env.*
+
+# SQL Server backup and related files
+*.bak
+*.mdf
+*.ldf
+
+# Migrations (if using Alembic)
+alembic.ini
+migrations/
+
+# Token or session info
+*.token
