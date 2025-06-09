@@ -33,15 +33,17 @@ async def login(data: LoginRequest):
         raise HTTPException(status_code=401, detail="Invalid employee ID or password")
 
     phone_number = employee["phone_number"]
-    otp = send_otp(data.employee_id, phone_number,"employee")
+    # otp = send_otp(data.employee_id, phone_number,"employee")
 
-    if otp is None:
-        raise HTTPException(status_code=500, detail="Failed to generate OTP")
+    # if otp is None:
+    #     raise HTTPException(status_code=500, detail="Failed to generate OTP")
 
     return {
-        "message": "OTP sent to your phone",
+        # "message": "OTP sent to your phone",
         "phone_number": phone_number,
-        "otp": otp  # ✅ Return OTP in response (only for development)
+        # "otp": otp,  # ✅ Return OTP in response (only for development)
+        "emp_id": data.employee_id,
+        "user_type":"employee"
     }
 
 @router.post("/verify-otp")
@@ -49,6 +51,6 @@ def verify_otp(data: OTPRequest):
     print(f"[DEBUG] Verifying OTP for user_type={data.user_type}, user_id={data.user_id}")
 
     if verify_otp_code(data.user_id, data.otp, data.user_type):
-        return {"message": f"{data.user_type.capitalize()} login successful"}
+        return {"message": f"{data.user_type.capitalize()} login successful {data.user_id}" }
 
     raise HTTPException(status_code=401, detail="Invalid or expired OTP")

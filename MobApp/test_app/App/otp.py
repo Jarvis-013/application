@@ -8,7 +8,7 @@ def hash_otp(otp: str) -> str:
     return hashlib.sha256(otp.encode()).hexdigest()
 
 def send_otp(user_id: str, phone_number: str, user_type: str) -> str | None:
-    otp = str(random.randint(100000, 999999))
+    otp = str(random.randint(1000, 9999))
     otp_hash = hash_otp(otp)
     now = datetime.datetime.now()
     expires_at = now + datetime.timedelta(minutes=2)

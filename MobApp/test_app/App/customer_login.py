@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from database import get_db_connection
 from models import CustomerLoginRequest
-from otp import send_otp  # assuming this is in otp_utils.py
+from otp import send_otp
 router = APIRouter()
 
 
@@ -36,15 +36,15 @@ def customer_login(data: CustomerLoginRequest):
         print("[DEBUG] Customer ID:", customer_id)
         print("[DEBUG] Phone Number:", phone_number)
 
-        otp = send_otp(user_id=customer_id, phone_number=phone_number, user_type="customer")
-        if not otp:
-            raise HTTPException(status_code=500, detail="Failed to send OTP")
+        # otp = send_otp(user_id=customer_id, phone_number=phone_number, user_type="customer")
+        # if not otp:
+        #     raise HTTPException(status_code=500, detail="Failed to send OTP")
 
         return {
-            "message": "OTP sent to registered phone number.",
+            "message": "succeful login",
             "customer_id": customer_id,
             "phone_number": phone_number,
-            "otp": otp  # in production, do NOT return the OTP!
+            # "otp": otp  # in production, do NOT return the OTP!
         }
 
     except Exception as e:
